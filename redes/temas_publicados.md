@@ -11,3 +11,6 @@ Registro para no repetir temas. Formato: fecha | categoría | tema | archivo
 - 2026-10-13 | Seguridad | Revisar el enlace real antes de hacer clic (phishing) | 2026-10/post7_seguridad_enlaces.jpg
 - 2026-10-15 | Windows | Panel de emojis y símbolos (Win + .) | 2026-10/post8_windows_emojis.jpg
 - 2026-10-17 | Linux | Repetir el último comando con sudo (sudo !!) | 2026-10/post9_linux_sudo.jpg
+- 2026-10-20 | Seguridad | Bloquear el PC al levantarte (Win + L / Ctrl + Cmd + Q) | 2026-10/post10_seguridad_bloqueo.jpg
+- 2026-10-22 | Windows | Abrir el Administrador de tareas directo (Ctrl + Shift + Esc) | 2026-10/post11_windows_taskmgr.jpg
+- 2026-10-25 | Linux | Ver puertos abiertos y su proceso (ss -tulpn) | 2026-10/post12_linux_puertos.jpg
