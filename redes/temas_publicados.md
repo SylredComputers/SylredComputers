@@ -14,3 +14,6 @@ Registro para no repetir temas. Formato: fecha | categoría | tema | archivo
 - 2026-10-20 | Seguridad | Bloquear el PC al levantarte (Win + L / Ctrl + Cmd + Q) | 2026-10/post10_seguridad_bloqueo.jpg
 - 2026-10-22 | Windows | Abrir el Administrador de tareas directo (Ctrl + Shift + Esc) | 2026-10/post11_windows_taskmgr.jpg
 - 2026-10-25 | Linux | Ver puertos abiertos y su proceso (ss -tulpn) | 2026-10/post12_linux_puertos.jpg
+- 2026-10-27 | Seguridad | Mostrar extensiones de archivo para detectar .pdf.exe | 2026-10/post13_seguridad_extensiones.jpg
+- 2026-10-29 | Windows | Escritorios virtuales (Win + Ctrl + D / ←→ / F4) | 2026-10/post14_windows_escritorios.jpg
+- 2026-11-01 | Linux | Volver al directorio anterior (cd -) | 2026-11/post1_linux_cdanterior.jpg
