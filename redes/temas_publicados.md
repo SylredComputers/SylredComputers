@@ -17,3 +17,6 @@ Registro para no repetir temas. Formato: fecha | categoría | tema | archivo
 - 2026-10-27 | Seguridad | Mostrar extensiones de archivo para detectar .pdf.exe | 2026-10/post13_seguridad_extensiones.jpg
 - 2026-10-29 | Windows | Escritorios virtuales (Win + Ctrl + D / ←→ / F4) | 2026-10/post14_windows_escritorios.jpg
 - 2026-11-01 | Linux | Volver al directorio anterior (cd -) | 2026-11/post1_linux_cdanterior.jpg
+- 2026-11-04 | Seguridad | Usar un gestor de contraseñas (Bitwarden / KeePassXC) | 2026-11/post2_seguridad_gestor.jpg
+- 2026-11-06 | Windows | Colocar ventanas con Win + flechas (Snap) | 2026-11/post3_windows_ajustar.jpg
+- 2026-11-09 | Linux | Reutilizar el último argumento (!$ / Alt + .) | 2026-11/post4_linux_ultimoarg.jpg
