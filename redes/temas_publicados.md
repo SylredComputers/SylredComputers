@@ -20,3 +20,4 @@ Registro para no repetir temas. Formato: fecha | categoría | tema | archivo
 - 2026-11-04 | Seguridad | Usar un gestor de contraseñas (Bitwarden / KeePassXC) | 2026-11/post2_seguridad_gestor.jpg
 - 2026-11-06 | Windows | Colocar ventanas con Win + flechas (Snap) | 2026-11/post3_windows_ajustar.jpg
 - 2026-11-09 | Linux | Reutilizar el último argumento (!$ / Alt + .) | 2026-11/post4_linux_ultimoarg.jpg
+- 2026-11-07 | Blog | Fraude de la nómina: correo falso que desvía el sueldo (https://sylredcomputers.com/?p=914) | 2026-11/post5_blog_fraudenomina.jpg
