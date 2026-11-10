@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8">
+<style>
+@font-face{font-family:Poppins;font-weight:700;src:url(../fuentes/Poppins-Bold.ttf)}
+@font-face{font-family:Poppins;font-weight:500;src:url(../fuentes/Poppins-Medium.ttf)}
+@font-face{font-family:Mono;font-weight:700;src:url(../fuentes/DejaVuSansMono-Bold.ttf)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:1080px;height:1920px;overflow:hidden;font-family:Poppins,"DejaVu Sans",sans-serif;color:#fff}
+body{background:linear-gradient(150deg,var(--c1) 0%,var(--c2) 100%)}
+.deco{position:absolute;border-radius:50%;background:rgba(255,255,255,.10)}
+.scene{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:230px 100px 430px;text-align:center}
+.tag{display:inline-flex;align-items:center;gap:16px;background:#fff;color:var(--acc);font-weight:700;font-size:38px;letter-spacing:2px;padding:16px 36px;border-radius:999px;box-shadow:0 14px 34px rgba(0,0,0,.18)}
+h1{font-size:96px;line-height:1.08;font-weight:700;letter-spacing:-1px;text-shadow:0 6px 24px rgba(0,0,0,.18)}
+h2{font-size:72px;line-height:1.12;font-weight:700}
+.sub{font-size:44px;line-height:1.35;font-weight:500;opacity:.95}
+.keys{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:22px;margin-top:70px}
+.key{min-width:170px;height:170px;padding:0 44px;display:flex;align-items:center;justify-content:center;background:#fff;color:#111827;border-radius:32px;font-weight:700;font-size:74px;box-shadow:0 16px 0 #CDD4E1,0 34px 40px rgba(0,0,0,.25)}
+.plus{font-size:70px;font-weight:700}
+.term{margin-top:70px;background:#0F172A;border-radius:30px;padding:0 0 44px;min-width:760px;max-width:880px;text-align:left;box-shadow:0 30px 60px rgba(0,0,0,.35);overflow:hidden}
+.term .bar{height:60px;background:#1E293B;display:flex;gap:14px;align-items:center;padding-left:26px}
+.term .bar i{width:20px;height:20px;border-radius:50%;display:block}
+.term pre{font-family:Mono,monospace;font-size:64px;color:#E2E8F0;padding:40px 44px 0;white-space:pre-wrap;word-break:break-word}
+.term .p{color:#4ADE80}
+.badge{margin-top:70px;background:#fff;color:var(--acc);font-weight:700;font-size:64px;padding:34px 56px;border-radius:36px;box-shadow:0 30px 60px rgba(0,0,0,.25);max-width:880px;line-height:1.2}
+.steps{width:880px;display:flex;flex-direction:column;gap:34px;margin-top:60px}
+.step{display:flex;gap:30px;align-items:center;background:#fff;color:#111827;border-radius:32px;padding:34px 38px;text-align:left;box-shadow:0 20px 40px rgba(0,0,0,.22)}
+.num{flex:none;width:84px;height:84px;border-radius:50%;background:var(--acc);color:#fff;font-weight:700;font-size:46px;display:flex;align-items:center;justify-content:center}
+.step span{font-size:44px;line-height:1.25;font-weight:600}
+.brand{margin-top:80px;font-size:50px;font-weight:700;background:rgba(255,255,255,.16);border:3px solid rgba(255,255,255,.5);padding:24px 48px;border-radius:999px}
+</style></head><body>
+<div class="deco" style="width:520px;height:520px;right:-200px;top:-180px"></div>
+<div class="deco" style="width:440px;height:440px;left:-200px;bottom:120px"></div>
+
+<div class="scene" id="gancho">
+  <span class="tag" id="g_tag"></span>
+  <h1 id="g_txt" style="margin-top:70px"></h1>
+</div>
+
+<div class="scene" id="tecla">
+  <h2 id="t_tit"></h2>
+  <div id="t_box"></div>
+</div>
+
+<div class="scene" id="pasos">
+  <h2 id="p_tit" style="font-size:64px"></h2>
+  <div class="steps" id="p_list"></div>
+</div>
+
+<div class="scene" id="cierre">
+  <h1 id="c_txt" style="font-size:84px"></h1>
+  <p class="sub" style="margin-top:40px">Más trucos cada semana</p>
+  <div class="brand" id="c_brand">Sylred Computers</div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const clamp=v=>Math.max(0,Math.min(1,v)), ease=v=>1-Math.pow(1-clamp(v),3);
+const back=v=>{v=clamp(v);const c=1.7;return 1+(c+1)*Math.pow(v-1,3)+c*Math.pow(v-1,2)};
+function inn(el,t,s,d=.45,dy=60,sc=false){const k=ease((t-s)/d);el.style.opacity=k;el.style.transform=sc?`scale(${.6+.4*back((t-s)/d)})`:`translateY(${(1-k)*dy}px)`}
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+let S=null;
+function setup(spec){
+  S=spec;const r=document.documentElement.style;
+  r.setProperty('--c1',spec.colores[0]);r.setProperty('--c2',spec.colores[1]);r.setProperty('--acc',spec.colores[2]);
+  $('g_tag').textContent=spec.etiqueta;$('g_txt').textContent=spec.gancho;
+  $('t_tit').textContent=spec.titulo;
+  let box='';
+  if(spec.cat==='windows'){const ks=spec.tecla.split('+').map(k=>k.trim()).filter(Boolean);
+    box='<div class="keys">'+ks.map((k,i)=>`<div class="key el">${esc(k)}</div>`+(i<ks.length-1?'<span class="plus el">+</span>':'')).join('')+'</div>';}
+  else if(spec.cat==='linux'){box=`<div class="term el"><div class="bar"><i style="background:#F87171"></i><i style="background:#FBBF24"></i><i style="background:#4ADE80"></i></div><pre><span class="p">$</span> ${esc(spec.tecla)}</pre></div>`;}
+  else{box=`<div class="badge el">${esc(spec.tecla)}</div>`;}
+  $('t_box').innerHTML=box;
+  $('p_tit').textContent=spec.titulo_pasos||'Así de fácil';
+  $('p_list').innerHTML=spec.pasos.map((p,i)=>`<div class="step"><div class="num">${i+1}</div><span>${esc(p)}</span></div>`).join('');
+  $('c_txt').textContent=spec.cierre;
+}
+function render(id,t,dur,marks){
+  document.querySelectorAll('.scene').forEach(s=>s.style.display='none');
+  const sc=$(id);sc.style.display='flex';
+  if(id==='gancho'){inn($('g_tag'),t,0,.4,30,true);inn($('g_txt'),t,.3,.5,80)}
+  if(id==='tecla'){inn($('t_tit'),t,0);document.querySelectorAll('#t_box .el').forEach((e,i)=>inn(e,t,.45+i*.18,.4,0,true))}
+  if(id==='pasos'){inn($('p_tit'),t,0);document.querySelectorAll('#p_list .step').forEach((e,i)=>inn(e,t,marks[i],.4,80))}
+  if(id==='cierre'){inn($('c_txt'),t,0,.5,60);inn(sc.querySelector('.sub'),t,.5);inn($('c_brand'),t,.9,.5,0,true)}
+  let o=1;if(t<.2)o=t/.2;if(id!=='cierre'&&dur-t<.25)o=Math.min(o,(dur-t)/.25);sc.style.opacity=o;
+}
+window.setup=setup;window.render=render;
+</script></body></html>
