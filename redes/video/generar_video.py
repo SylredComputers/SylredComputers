@@ -5,13 +5,14 @@ Uso:
 
 guion.json:
 {
-  "etiqueta": "TRUCO WINDOWS",          # CIBERSEGURIDAD / TRUCO WINDOWS / TRUCO LINUX (decide colores y estilo)
+  "etiqueta": "TRUCO WINDOWS",          # CIBERSEGURIDAD / TRUCO WINDOWS / TRUCO LINUX / NUEVO EN EL BLOG (decide colores y estilo)
   "gancho": "¿Sigues recortando capturas en Paint?",
   "titulo": "Captura solo lo que quieras",
   "tecla": "Win + Shift + S",           # Windows: teclas separadas por "+"; Linux: comando; seguridad: idea clave
   "titulo_pasos": "Así de fácil",       # opcional
   "pasos": ["Paso 1", "Paso 2", "Paso 3"],   # 2 o 3 pasos, máx. ~45 caracteres cada uno
   "cierre": "Guárdalo para cuando lo necesites",
+  "subcierre": "Más trucos cada semana",  # opcional; en el blog, por defecto lleva al artículo
   "voz": {                              # lo que dice la locución en cada escena
     "gancho": "...", "tecla": "...",
     "pasos": ["...", "...", "..."],     # una frase por paso
@@ -40,11 +41,14 @@ TEMAS = {  # mismos colores que generar_tarjeta.py: (inicio, fin, acento)
     "seguridad": ("#FF3D57", "#7C3AED", "#E11D48"),
     "windows": ("#0063FF", "#00C8FF", "#006EF0"),
     "linux": ("#00A878", "#84CC16", "#059669"),
+    "blog": ("#7C3AED", "#EC4899", "#A832C8"),
 }
 
 
 def categoria(tag):
     t = tag.upper()
+    if "BLOG" in t:
+        return "blog"
     if "WINDOWS" in t:
         return "windows"
     if "LINUX" in t:
@@ -84,6 +88,7 @@ def main():
     salida = os.path.abspath(sys.argv[2])
     cat = categoria(spec["etiqueta"])
     spec["cat"], spec["colores"] = cat, TEMAS[cat]
+    spec.setdefault("subcierre", "Artículo completo en sylredcomputers.com" if cat == "blog" else "Más trucos cada semana")
     voz = spec["voz"]
     if len(spec["pasos"]) != len(voz["pasos"]):
         sys.exit("'pasos' y 'voz.pasos' deben tener el mismo número de elementos")

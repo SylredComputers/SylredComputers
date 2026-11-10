@@ -48,7 +48,7 @@ h2{font-size:72px;line-height:1.12;font-weight:700}
 
 <div class="scene" id="cierre">
   <h1 id="c_txt" style="font-size:84px"></h1>
-  <p class="sub" style="margin-top:40px">Más trucos cada semana</p>
+  <p class="sub" id="c_sub" style="margin-top:40px"></p>
   <div class="brand" id="c_brand">Sylred Computers</div>
 </div>
 
@@ -72,7 +72,7 @@ function setup(spec){
   $('t_box').innerHTML=box;
   $('p_tit').textContent=spec.titulo_pasos||'Así de fácil';
   $('p_list').innerHTML=spec.pasos.map((p,i)=>`<div class="step"><div class="num">${i+1}</div><span>${esc(p)}</span></div>`).join('');
-  $('c_txt').textContent=spec.cierre;
+  $('c_txt').textContent=spec.cierre;$('c_sub').textContent=spec.subcierre||'';
 }
 function render(id,t,dur,marks){
   document.querySelectorAll('.scene').forEach(s=>s.style.display='none');
